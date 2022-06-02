@@ -1,8 +1,69 @@
-﻿@{
+﻿@model IEnumerable<Sweet_Management_Tool.Models.AssetModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Asset List</h1>
+    @*@{
+        foreach (var asset in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">@asset.Name</p>
+                        <p class="card-text">@asset.Institution</p>
+                        <p class="card-text">@asset.IsAvailable</p>
+                        <p class="card-text">@asset.InUseBy</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }*@
+    <div class="row">
+        <a asp-controller="Home" asp-action="Create" class="btn btn-primary">
+            Create New Asset
+        </a>
+    </div>
 </div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Institution
+            </th>
+            <th>
+                Is Available
+            </th>
+            <th>
+                InUseBy
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @obj.Name
+                </td>
+                <td width="50%">
+                    @obj.Institution
+                </td>
+                    <td width="30%">
+                    @obj.IsAvailable
+                </td>
+                <td width="50%">
+                    @obj.InUseBy
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
